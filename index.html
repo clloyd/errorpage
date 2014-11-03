@@ -9,6 +9,9 @@
 	<div style="padding-bottom: 20px;">
 		<button id="sendnotfounderror">Send Not Found Error</button>
 	</div>
+	<div style="padding-bottom: 20px;">
+		<button id="sendsuccess">Send Success</button>
+	</div>
 	<div>
 		<a href="https://chrome.google.com/webstore/detail/app-communication-simulat/mgfkmgfjilkedgklmgcfpkpmbakpnkcc">Download the Chrome Extension</a>
 	</div>
@@ -28,6 +31,14 @@
       "message": "That ticket can no longer be found" ,
       "code": 404,
       "sessionID": "ThisisAMadeUpSessionID02"
+    }
+</script>
+
+<script id="successJSON" type="application/json">
+    {
+      "message": "Success" ,
+      "code": 200,
+      "sessionID": "ThisisAMadeUpSessionID01"
     }
 </script>
 
@@ -63,6 +74,16 @@
       'use strict';
 
       sendErrorToApplication(notfoundError);
+    });
+  }
+  
+  var successEl = document.getElementById('successJSON');
+  if (successEl) {
+    var success = JSON.parse(successEl.innerHTML);
+    document.getElementById('sendsuccess').addEventListener('click', function() {
+      'use strict';
+
+      sendErrorToApplication(success);
     });
   }
 </script>
