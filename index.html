@@ -20,6 +20,7 @@
 
 <script id="unknownErrorJSON" type="application/json">
     {
+	  "type": "error",
       "message": "An Unknown Error has occurred" ,
       "code": 1234,
       "sessionID": "ThisisAMadeUpSessionID04"
@@ -28,6 +29,7 @@
 
 <script id="notFoundErrorJSON" type="application/json">
     {
+	  "type": "error",
       "message": "That ticket can no longer be found" ,
       "code": 404,
       "sessionID": "ThisisAMadeUpSessionID02"
@@ -36,6 +38,7 @@
 
 <script id="successJSON" type="application/json">
     {
+	  "type": "success",
       "message": "Success" ,
       "code": 200,
       "sessionID": "ThisisAMadeUpSessionID01"
@@ -44,7 +47,7 @@
 
 <script type="text/javascript">
 
-  function sendErrorToApplication(error) {
+  function sendToApplication(error) {
     'use strict';
 
     if (error) {
@@ -53,7 +56,7 @@
         return encodeURIComponent(key) + '=' + encodeURIComponent(error[key]);
       }).join('&');
 
-      window.location = window.location.origin + window.location.pathname.substring(0, window.location.pathname.length -1) + '?type=error&' + urlString;
+      window.location = window.location.origin + window.location.pathname.substring(0, window.location.pathname.length -1) + urlString;
     }
   }
 
@@ -63,7 +66,7 @@
     document.getElementById('sendunknownerror').addEventListener('click', function() {
       'use strict';
 
-      sendErrorToApplication(unknownError);
+      sendToApplication(unknownError);
     });
   }
  
@@ -73,7 +76,7 @@
     document.getElementById('sendnotfounderror').addEventListener('click', function() {
       'use strict';
 
-      sendErrorToApplication(notfoundError);
+      sendToApplication(notfoundError);
     });
   }
   
@@ -83,7 +86,7 @@
     document.getElementById('sendsuccess').addEventListener('click', function() {
       'use strict';
 
-      sendErrorToApplication(success);
+      sendToApplication(success);
     });
   }
 </script>
