@@ -25,7 +25,7 @@
         return encodeURIComponent(key) + '=' + encodeURIComponent(error[key]);
       }).join('&');
 
-      window.location = window.location.origin + window.location.pathname + '?type=error&' + urlString;
+      window.location = window.location.origin + window.location.pathname.substring(0, window.location.pathname.length -1) + '?type=error&' + urlString;
     }
   }
 
