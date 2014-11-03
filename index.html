@@ -4,7 +4,10 @@
 
 <body>
 	<div style="padding-bottom: 20px;">
-		<button id="senderror">Send Unknown Error</button>
+		<button id="sendunknownerror">Send Unknown Error</button>
+	</div>
+	<div style="padding-bottom: 20px;">
+		<button id="sendnotfounderror">Send Not Found Error</button>
 	</div>
 	<div>
 		<a href="https://chrome.google.com/webstore/detail/app-communication-simulat/mgfkmgfjilkedgklmgcfpkpmbakpnkcc">Download the Chrome Extension</a>
@@ -12,11 +15,19 @@
 
 
 
-<script id="errorJSON" type="application/json">
+<script id="unknownErrorJSON" type="application/json">
     {
       "message": "An Unknown Error has occurred" ,
       "code": 1234,
       "sessionID": "ThisisAMadeUpSessionID04"
+    }
+</script>
+
+<script id="notFoundErrorJSON" type="application/json">
+    {
+      "message": "That ticket can no longer be found" ,
+      "code": 404,
+      "sessionID": "ThisisAMadeUpSessionID02"
     }
 </script>
 
@@ -35,14 +46,23 @@
     }
   }
 
-  var errorEl = document.getElementById('errorJSON');
-
-  if (errorEl) {
-    var error = JSON.parse(errorEl.innerHTML);
-    document.getElementById('senderror').addEventListener('click', function() {
+  var unknownErrorEl = document.getElementById('errorJSON');
+  if (unknownErrorEl) {
+    var unknownError = JSON.parse(unknownErrorEl.innerHTML);
+    document.getElementById('sendunknownerror').addEventListener('click', function() {
       'use strict';
 
-      sendErrorToApplication(error);
+      sendErrorToApplication(unknownError);
+    });
+  }
+ 
+  var notfoundErrorEl = document.getElementById('notFoundErrorJSON');
+  if (notfoundErrorEl) {
+    var notfoundError = JSON.parse(notfoundErrorEl.innerHTML);
+    document.getElementById('sendnotfounderror').addEventListener('click', function() {
+      'use strict';
+
+      sendErrorToApplication(notfoundError);
     });
   }
 </script>
