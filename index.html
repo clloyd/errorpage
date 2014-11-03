@@ -1,0 +1,42 @@
+<head>
+  <title>Extension Test Page</title>
+</head>
+
+<body>
+  <button id="senderror">Send Unknown Error</button>
+</body>
+
+<script id="errorJSON" type="application/json">
+    {
+      "message": "An Unknown Error has occurred" ,
+      "code": 1234,
+      "sessionID": "ThisisAMadeUpSessionID04"
+    }
+</script>
+
+<script type="text/javascript">
+
+  function sendErrorToApplication(error) {
+    'use strict';
+
+    if (error) {
+
+      var urlString = Object.keys(error).map(function(key){
+        return encodeURIComponent(key) + '=' + encodeURIComponent(error[key]);
+      }).join('&');
+
+      window.location = window.location.origin + '?type=error&' + urlString;
+    }
+  }
+
+  var errorEl = document.getElementById('errorJSON');
+
+  if (errorEl) {
+    var error = JSON.parse(errorEl.innerHTML);
+    document.getElementById('senderror').addEventListener('click', function() {
+      'use strict';
+
+      sendErrorToApplication(error);
+    });
+  }
+</script>
